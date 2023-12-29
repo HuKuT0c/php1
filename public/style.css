@@ -1,0 +1,12 @@
+* {
+  font-size: 1.2rem;
+}
+
+.fa-brands.fa-squarespace,
+.nav-link.header.active {
+  color: #3D68ED;
+}
+
+.fa-brands.fa-squarespace {
+  font-size: 35px;
+}

@@ -1,0 +1,59 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <style>
+        .card {
+            height: 100%;
+            position: relative;
+        }
+
+        .action-buttons {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+        }
+
+        .action-buttons form {
+            display: inline-block;
+        }
+    </style>
+
+    <div class="container mt-3">
+        <div class="row">
+            {% for object in space_objects %}
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img src="{{ object.image }}" class="card-img-top border" alt="{{ object.title }}" height="200px">
+                                            
+                        <div class="action-buttons">
+                            <form action="/space-object/{{ object.id }}/delete" method="POST" style="display: inline-block;"> 
+                             
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-times"></i>  
+                                </button>
+                            </form>
+
+                            <form action="/space-object/{{ object.id }}/edit" method="GET" style="display: inline-block;"> 
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-edit"></i>  
+                                </button>
+                            </form>
+                        </div>   
+
+                        <div class="d-grid mt-3">
+                            <a href="/space-object/{{ object.id }}" class="btn btn-primary btn-sm d-block mx-auto" style="width: 85%; ">{{ object.title }}</a>
+                            <ul class="nav nav-pills justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/space-object/{{ object.id }}/image">Картинка</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/space-object/{{ object.id }}/info">Описание</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

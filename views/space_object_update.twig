@@ -1,0 +1,57 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>Обновление</h1>
+    <hr>
+
+    {% if message %}
+        <div class="alert alert-info">
+            {{ message }}        
+        </div>
+    {% endif %}
+
+    <form action="" enctype="multipart/form-data" method="POST" class="row g-3">
+        <div class="col-12 text-end">
+            
+            <input type="hidden" name="id" value="{{ object.id }}">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Название</label>
+            <input type="text" class="form-control" name="title" value="{{ object.title }}">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Краткое описание</label>
+            <input type="text" class="form-control" name="description" value="{{ object.description }}">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Тип</label>
+            <select class="form-control" name="type">
+                {% for type in types %}
+                    <option value="{{ type.name }}" {% if type.typeId == object.typeId %}selected{% endif %}>
+                        {{ type.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            {% if object.image %}
+            <img src="{{ object.image }}" class="border" alt="{{ object.title }}" width="300px">
+            {% endif %}
+            <br>
+            <label for="formFile" class="form-label">Выберите файл</label>
+            <input class="form-control" type="file" id="formFile" name="image" value="{{ object.image }}">
+        </div>
+
+        <div class="col-12">
+            <textarea name="info" placeholder="Полное описание..." class="form-control" rows="5">{{ object.info }}</textarea>
+        </div>
+
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Обновить</button>
+        </div>
+    </form>
+{% endblock %}
